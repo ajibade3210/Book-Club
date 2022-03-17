@@ -23,6 +23,7 @@ export const Panel = styled.article`
     height: calc(100vh - 75px);
     bottom: ${({$state}) => ($state === 'entering' || $state === 'entered' ? 0 : '-100vh')};
     right: unset;
+    z-index: 3;
   }
 `
 

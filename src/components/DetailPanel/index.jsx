@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react'
 import Book from '../Book'
-import {BG, Close, CloseWrapper, Em, P, Panel} from './styles'
+import {BG, CloseWrapper, Em, P, Panel} from './styles'
+import {Close} from '../../styles'
 
 const DetailPanel = ({book, closePanel, state}) => {
   const panelEL = useRef(null)
@@ -12,7 +13,7 @@ const DetailPanel = ({book, closePanel, state}) => {
       panelEL.current.scrollTop = 0
     }
 
-    prevBook.current = book;
+    prevBook.current = book
   }, [book, prevBook])
 
   return (

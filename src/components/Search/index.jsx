@@ -1,18 +1,33 @@
-import React from 'react'
-import {Input, SearchContainer} from './styles'
-import search from '../../assets/search.svg'
+import React, {useRef, useState} from 'react'
+import {Icon, Input, SearchContainer, Wrapper} from './styles'
+import {Close} from '../../styles'
 
 const Search = ({filterBooks}) => {
+  const inputEl = useRef(null)
+  const [showOnDesktop, setShowOnDesktop] = useState()
+
   const handleChange = (event) => {
-    console.log(event.target.value)
     filterBooks(event.target.value)
   }
 
+  const clearSearch = () => {
+    filterBooks('')
+    inputEl.current.value = ''
+    setShowOnDesktop(false)
+  }
+
+  const showSearch = () => {
+    setShowOnDesktop(true)
+  }
+
   return (
-    <SearchContainer>
-      <img src={search} alt="" />
-      <Input type="text" name="search" autoComplete="off" onChange={handleChange} />
-    </SearchContainer>
+    <Wrapper>
+      <SearchContainer $showOnDesktop={showOnDesktop}>
+        <Icon onClick={showSearch} />
+        <Input ref={inputEl} type="text" name="search" autoComplete="off" onChange={handleChange} />
+        <Close onClick={clearSearch} />
+      </SearchContainer>
+    </Wrapper>
   )
 }
 
